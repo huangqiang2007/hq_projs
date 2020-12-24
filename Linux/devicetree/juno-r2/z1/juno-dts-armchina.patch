@@ -1,0 +1,29 @@
+diff --git a/devicetree/juno-base.dtsi b/devicetree/juno-base.dtsi
+index edd80f7..f53bcf9 100644
+--- a/devicetree/juno-base.dtsi
++++ b/devicetree/juno-base.dtsi
+@@ -639,3 +639,26 @@
+ 		interrupt-map-mask = <0 0>;
+ 		interrupt-map = <0 0 &gic 0 0 0 168 IRQ_TYPE_LEVEL_HIGH>;
+ 	};
++
++	reserved-memory {
++		#address-cells = <2>;
++		#size-cells = <2>;
++		ranges;
++
++		aipu_reserved: buffer@0xA0000000 {
++			compatible = "shared-dma-pool";
++			no-map;
++			reg = <0x0 0xA0000000 0x0 0x20000000>;
++			};
++	};
++
++	aipu@0x64000000 {
++		compatible = "armchina,zhouyi-v1";
++		reg = <0x0 0x64000000 0x0 0x1000>,
++			  <0x0 0x60010000 0x0 0x1000>;
++		host-aipu-offset = <0x0 0x80000000>;
++		memory-region=<&aipu_reserved>;
++		interrupts = <0 168 IRQ_TYPE_EDGE_RISING>;
++	};

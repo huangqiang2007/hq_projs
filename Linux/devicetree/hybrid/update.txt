@@ -1,0 +1,3 @@
+To update dtb on hybrid, load this updated dts file to te following dir on emu@szc-hybrid01 server:
+
+/home/emu/hybrid/hybrid_quickstart_kit/esw/bsp/board/cadence/foundation-v8/dts
